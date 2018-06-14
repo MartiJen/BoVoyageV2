@@ -1,0 +1,539 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BoVoyageV2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AgenceVoyage">
+          <Key>
+            <PropertyRef Name="IdAgenceVoyage" />
+          </Key>
+          <Property Name="IdAgenceVoyage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AssuranceAnnulation">
+          <Key>
+            <PropertyRef Name="IdAssuranceAnnulation" />
+          </Key>
+          <Property Name="IdAssuranceAnnulation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Assurances">
+          <Key>
+            <PropertyRef Name="IdAssurance" />
+          </Key>
+          <Property Name="IdAssurance" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="IdClients" />
+          </Key>
+          <Property Name="IdClients" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Civilité" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nom" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prenom" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Adresse" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Téléphone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateNaissance" Type="datetime" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Destinations">
+          <Key>
+            <PropertyRef Name="IdDestination" />
+          </Key>
+          <Property Name="IdDestination" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Continent" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Pays" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Région" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DossiersReservation">
+          <Key>
+            <PropertyRef Name="IdDossierRéservation" />
+          </Key>
+          <Property Name="IdDossierRéservation" Type="int" Nullable="false" />
+          <Property Name="NuméroUnique" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NuméroCarteBancaire" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PrixTotal" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Participants">
+          <Key>
+            <PropertyRef Name="IdParticipant" />
+          </Key>
+          <Property Name="IdParticipant" Type="int" Nullable="false" />
+          <Property Name="NuméroUnique" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Civilité" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nom" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prénom" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Adresse" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Téléphone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateNaissance" Type="datetime" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Réduction" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Voyages">
+          <Key>
+            <PropertyRef Name="IdVoyage" />
+          </Key>
+          <Property Name="IdVoyage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateAller" Type="datetime" Nullable="false" />
+          <Property Name="DateRetour" Type="datetime" Nullable="false" />
+          <Property Name="PlacesDisponibles" Type="int" Nullable="false" />
+          <Property Name="TarifToutCompris" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Assurances_AssuranceAnnulation">
+          <End Role="AssuranceAnnulation" Type="Self.AssuranceAnnulation" Multiplicity="1" />
+          <End Role="Assurances" Type="Self.Assurances" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AssuranceAnnulation">
+              <PropertyRef Name="IdAssuranceAnnulation" />
+            </Principal>
+            <Dependent Role="Assurances">
+              <PropertyRef Name="IdAssurance" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DossiersReservation_Assurances">
+          <End Role="Assurances" Type="Self.Assurances" Multiplicity="1" />
+          <End Role="DossiersReservation" Type="Self.DossiersReservation" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Assurances">
+              <PropertyRef Name="IdAssurance" />
+            </Principal>
+            <Dependent Role="DossiersReservation">
+              <PropertyRef Name="IdDossierRéservation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DossiersReservation_Clients">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="DossiersReservation" Type="Self.DossiersReservation" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="IdClients" />
+            </Principal>
+            <Dependent Role="DossiersReservation">
+              <PropertyRef Name="IdDossierRéservation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DossiersReservation_Participants">
+          <End Role="Participants" Type="Self.Participants" Multiplicity="1" />
+          <End Role="DossiersReservation" Type="Self.DossiersReservation" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Participants">
+              <PropertyRef Name="IdParticipant" />
+            </Principal>
+            <Dependent Role="DossiersReservation">
+              <PropertyRef Name="IdDossierRéservation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DossiersReservation_Voyages">
+          <End Role="Voyages" Type="Self.Voyages" Multiplicity="1" />
+          <End Role="DossiersReservation" Type="Self.DossiersReservation" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Voyages">
+              <PropertyRef Name="IdVoyage" />
+            </Principal>
+            <Dependent Role="DossiersReservation">
+              <PropertyRef Name="IdDossierRéservation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Voyages_AgenceVoyage">
+          <End Role="AgenceVoyage" Type="Self.AgenceVoyage" Multiplicity="1" />
+          <End Role="Voyages" Type="Self.Voyages" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AgenceVoyage">
+              <PropertyRef Name="IdAgenceVoyage" />
+            </Principal>
+            <Dependent Role="Voyages">
+              <PropertyRef Name="IdVoyage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Voyages_Destinations">
+          <End Role="Destinations" Type="Self.Destinations" Multiplicity="1" />
+          <End Role="Voyages" Type="Self.Voyages" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Destinations">
+              <PropertyRef Name="IdDestination" />
+            </Principal>
+            <Dependent Role="Voyages">
+              <PropertyRef Name="IdVoyage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BoVoyageV2ModelStoreContainer">
+          <EntitySet Name="AgenceVoyage" EntityType="Self.AgenceVoyage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssuranceAnnulation" EntityType="Self.AssuranceAnnulation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Assurances" EntityType="Self.Assurances" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Destinations" EntityType="Self.Destinations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DossiersReservation" EntityType="Self.DossiersReservation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Participants" EntityType="Self.Participants" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Voyages" EntityType="Self.Voyages" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Assurances_AssuranceAnnulation" Association="Self.FK_Assurances_AssuranceAnnulation">
+            <End Role="AssuranceAnnulation" EntitySet="AssuranceAnnulation" />
+            <End Role="Assurances" EntitySet="Assurances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DossiersReservation_Assurances" Association="Self.FK_DossiersReservation_Assurances">
+            <End Role="Assurances" EntitySet="Assurances" />
+            <End Role="DossiersReservation" EntitySet="DossiersReservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DossiersReservation_Clients" Association="Self.FK_DossiersReservation_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="DossiersReservation" EntitySet="DossiersReservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DossiersReservation_Participants" Association="Self.FK_DossiersReservation_Participants">
+            <End Role="Participants" EntitySet="Participants" />
+            <End Role="DossiersReservation" EntitySet="DossiersReservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DossiersReservation_Voyages" Association="Self.FK_DossiersReservation_Voyages">
+            <End Role="Voyages" EntitySet="Voyages" />
+            <End Role="DossiersReservation" EntitySet="DossiersReservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Voyages_AgenceVoyage" Association="Self.FK_Voyages_AgenceVoyage">
+            <End Role="AgenceVoyage" EntitySet="AgenceVoyage" />
+            <End Role="Voyages" EntitySet="Voyages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Voyages_Destinations" Association="Self.FK_Voyages_Destinations">
+            <End Role="Destinations" EntitySet="Destinations" />
+            <End Role="Voyages" EntitySet="Voyages" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BoVoyageV2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AgenceVoyage">
+          <Key>
+            <PropertyRef Name="IdAgenceVoyage" />
+          </Key>
+          <Property Name="IdAgenceVoyage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Voyage" Relationship="Self.FK_Voyages_AgenceVoyage" FromRole="AgenceVoyage" ToRole="Voyages" />
+        </EntityType>
+        <EntityType Name="AssuranceAnnulation">
+          <Key>
+            <PropertyRef Name="IdAssuranceAnnulation" />
+          </Key>
+          <Property Name="IdAssuranceAnnulation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Assurance" Relationship="Self.FK_Assurances_AssuranceAnnulation" FromRole="AssuranceAnnulation" ToRole="Assurances" />
+        </EntityType>
+        <EntityType Name="Assurance">
+          <Key>
+            <PropertyRef Name="IdAssurance" />
+          </Key>
+          <Property Name="IdAssurance" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="AssuranceAnnulation" Relationship="Self.FK_Assurances_AssuranceAnnulation" FromRole="Assurances" ToRole="AssuranceAnnulation" />
+          <NavigationProperty Name="DossiersReservation" Relationship="Self.FK_DossiersReservation_Assurances" FromRole="Assurances" ToRole="DossiersReservation" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="IdClients" />
+          </Key>
+          <Property Name="IdClients" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Civilité" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Téléphone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateNaissance" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DossiersReservation" Relationship="Self.FK_DossiersReservation_Clients" FromRole="Clients" ToRole="DossiersReservation" />
+        </EntityType>
+        <EntityType Name="Destination">
+          <Key>
+            <PropertyRef Name="IdDestination" />
+          </Key>
+          <Property Name="IdDestination" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Continent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pays" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Région" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Voyage" Relationship="Self.FK_Voyages_Destinations" FromRole="Destinations" ToRole="Voyages" />
+        </EntityType>
+        <EntityType Name="DossiersReservation">
+          <Key>
+            <PropertyRef Name="IdDossierRéservation" />
+          </Key>
+          <Property Name="IdDossierRéservation" Type="Int32" Nullable="false" />
+          <Property Name="NuméroUnique" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NuméroCarteBancaire" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PrixTotal" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Assurance" Relationship="Self.FK_DossiersReservation_Assurances" FromRole="DossiersReservation" ToRole="Assurances" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_DossiersReservation_Clients" FromRole="DossiersReservation" ToRole="Clients" />
+          <NavigationProperty Name="Participant" Relationship="Self.FK_DossiersReservation_Participants" FromRole="DossiersReservation" ToRole="Participants" />
+          <NavigationProperty Name="Voyage" Relationship="Self.FK_DossiersReservation_Voyages" FromRole="DossiersReservation" ToRole="Voyages" />
+        </EntityType>
+        <EntityType Name="Participant">
+          <Key>
+            <PropertyRef Name="IdParticipant" />
+          </Key>
+          <Property Name="IdParticipant" Type="Int32" Nullable="false" />
+          <Property Name="NuméroUnique" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Civilité" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Prénom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Téléphone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateNaissance" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Réduction" Type="Double" Nullable="false" />
+          <NavigationProperty Name="DossiersReservation" Relationship="Self.FK_DossiersReservation_Participants" FromRole="Participants" ToRole="DossiersReservation" />
+        </EntityType>
+        <EntityType Name="Voyage">
+          <Key>
+            <PropertyRef Name="IdVoyage" />
+          </Key>
+          <Property Name="IdVoyage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateAller" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateRetour" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PlacesDisponibles" Type="Int32" Nullable="false" />
+          <Property Name="TarifToutCompris" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="AgenceVoyage" Relationship="Self.FK_Voyages_AgenceVoyage" FromRole="Voyages" ToRole="AgenceVoyage" />
+          <NavigationProperty Name="Destination" Relationship="Self.FK_Voyages_Destinations" FromRole="Voyages" ToRole="Destinations" />
+          <NavigationProperty Name="DossiersReservation" Relationship="Self.FK_DossiersReservation_Voyages" FromRole="Voyages" ToRole="DossiersReservation" />
+        </EntityType>
+        <Association Name="FK_Voyages_AgenceVoyage">
+          <End Role="AgenceVoyage" Type="Self.AgenceVoyage" Multiplicity="1" />
+          <End Role="Voyages" Type="Self.Voyage" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AgenceVoyage">
+              <PropertyRef Name="IdAgenceVoyage" />
+            </Principal>
+            <Dependent Role="Voyages">
+              <PropertyRef Name="IdVoyage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assurances_AssuranceAnnulation">
+          <End Role="AssuranceAnnulation" Type="Self.AssuranceAnnulation" Multiplicity="1" />
+          <End Role="Assurances" Type="Self.Assurance" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AssuranceAnnulation">
+              <PropertyRef Name="IdAssuranceAnnulation" />
+            </Principal>
+            <Dependent Role="Assurances">
+              <PropertyRef Name="IdAssurance" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DossiersReservation_Assurances">
+          <End Role="Assurances" Type="Self.Assurance" Multiplicity="1" />
+          <End Role="DossiersReservation" Type="Self.DossiersReservation" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Assurances">
+              <PropertyRef Name="IdAssurance" />
+            </Principal>
+            <Dependent Role="DossiersReservation">
+              <PropertyRef Name="IdDossierRéservation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DossiersReservation_Clients">
+          <End Role="Clients" Type="Self.Client" Multiplicity="1" />
+          <End Role="DossiersReservation" Type="Self.DossiersReservation" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="IdClients" />
+            </Principal>
+            <Dependent Role="DossiersReservation">
+              <PropertyRef Name="IdDossierRéservation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Voyages_Destinations">
+          <End Role="Destinations" Type="Self.Destination" Multiplicity="1" />
+          <End Role="Voyages" Type="Self.Voyage" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Destinations">
+              <PropertyRef Name="IdDestination" />
+            </Principal>
+            <Dependent Role="Voyages">
+              <PropertyRef Name="IdVoyage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DossiersReservation_Participants">
+          <End Role="Participants" Type="Self.Participant" Multiplicity="1" />
+          <End Role="DossiersReservation" Type="Self.DossiersReservation" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Participants">
+              <PropertyRef Name="IdParticipant" />
+            </Principal>
+            <Dependent Role="DossiersReservation">
+              <PropertyRef Name="IdDossierRéservation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DossiersReservation_Voyages">
+          <End Role="Voyages" Type="Self.Voyage" Multiplicity="1" />
+          <End Role="DossiersReservation" Type="Self.DossiersReservation" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Voyages">
+              <PropertyRef Name="IdVoyage" />
+            </Principal>
+            <Dependent Role="DossiersReservation">
+              <PropertyRef Name="IdDossierRéservation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BoVoyageV2Entities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AgenceVoyages" EntityType="Self.AgenceVoyage" />
+          <EntitySet Name="AssuranceAnnulations" EntityType="Self.AssuranceAnnulation" />
+          <EntitySet Name="Assurances" EntityType="Self.Assurance" />
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="Destinations" EntityType="Self.Destination" />
+          <EntitySet Name="DossiersReservations" EntityType="Self.DossiersReservation" />
+          <EntitySet Name="Participants" EntityType="Self.Participant" />
+          <EntitySet Name="Voyages" EntityType="Self.Voyage" />
+          <AssociationSet Name="FK_Voyages_AgenceVoyage" Association="Self.FK_Voyages_AgenceVoyage">
+            <End Role="AgenceVoyage" EntitySet="AgenceVoyages" />
+            <End Role="Voyages" EntitySet="Voyages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assurances_AssuranceAnnulation" Association="Self.FK_Assurances_AssuranceAnnulation">
+            <End Role="AssuranceAnnulation" EntitySet="AssuranceAnnulations" />
+            <End Role="Assurances" EntitySet="Assurances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DossiersReservation_Assurances" Association="Self.FK_DossiersReservation_Assurances">
+            <End Role="Assurances" EntitySet="Assurances" />
+            <End Role="DossiersReservation" EntitySet="DossiersReservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DossiersReservation_Clients" Association="Self.FK_DossiersReservation_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="DossiersReservation" EntitySet="DossiersReservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Voyages_Destinations" Association="Self.FK_Voyages_Destinations">
+            <End Role="Destinations" EntitySet="Destinations" />
+            <End Role="Voyages" EntitySet="Voyages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DossiersReservation_Participants" Association="Self.FK_DossiersReservation_Participants">
+            <End Role="Participants" EntitySet="Participants" />
+            <End Role="DossiersReservation" EntitySet="DossiersReservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DossiersReservation_Voyages" Association="Self.FK_DossiersReservation_Voyages">
+            <End Role="Voyages" EntitySet="Voyages" />
+            <End Role="DossiersReservation" EntitySet="DossiersReservations" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BoVoyageV2ModelStoreContainer" CdmEntityContainer="BoVoyageV2Entities1">
+          <EntitySetMapping Name="AgenceVoyages">
+            <EntityTypeMapping TypeName="BoVoyageV2Model.AgenceVoyage">
+              <MappingFragment StoreEntitySet="AgenceVoyage">
+                <ScalarProperty Name="IdAgenceVoyage" ColumnName="IdAgenceVoyage" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssuranceAnnulations">
+            <EntityTypeMapping TypeName="BoVoyageV2Model.AssuranceAnnulation">
+              <MappingFragment StoreEntitySet="AssuranceAnnulation">
+                <ScalarProperty Name="IdAssuranceAnnulation" ColumnName="IdAssuranceAnnulation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Assurances">
+            <EntityTypeMapping TypeName="BoVoyageV2Model.Assurance">
+              <MappingFragment StoreEntitySet="Assurances">
+                <ScalarProperty Name="IdAssurance" ColumnName="IdAssurance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="BoVoyageV2Model.Client">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="IdClients" ColumnName="IdClients" />
+                <ScalarProperty Name="Civilité" ColumnName="Civilité" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="Téléphone" ColumnName="Téléphone" />
+                <ScalarProperty Name="DateNaissance" ColumnName="DateNaissance" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Destinations">
+            <EntityTypeMapping TypeName="BoVoyageV2Model.Destination">
+              <MappingFragment StoreEntitySet="Destinations">
+                <ScalarProperty Name="IdDestination" ColumnName="IdDestination" />
+                <ScalarProperty Name="Continent" ColumnName="Continent" />
+                <ScalarProperty Name="Pays" ColumnName="Pays" />
+                <ScalarProperty Name="Région" ColumnName="Région" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DossiersReservations">
+            <EntityTypeMapping TypeName="BoVoyageV2Model.DossiersReservation">
+              <MappingFragment StoreEntitySet="DossiersReservation">
+                <ScalarProperty Name="IdDossierRéservation" ColumnName="IdDossierRéservation" />
+                <ScalarProperty Name="NuméroUnique" ColumnName="NuméroUnique" />
+                <ScalarProperty Name="NuméroCarteBancaire" ColumnName="NuméroCarteBancaire" />
+                <ScalarProperty Name="PrixTotal" ColumnName="PrixTotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Participants">
+            <EntityTypeMapping TypeName="BoVoyageV2Model.Participant">
+              <MappingFragment StoreEntitySet="Participants">
+                <ScalarProperty Name="IdParticipant" ColumnName="IdParticipant" />
+                <ScalarProperty Name="NuméroUnique" ColumnName="NuméroUnique" />
+                <ScalarProperty Name="Civilité" ColumnName="Civilité" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Prénom" ColumnName="Prénom" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="Téléphone" ColumnName="Téléphone" />
+                <ScalarProperty Name="DateNaissance" ColumnName="DateNaissance" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Réduction" ColumnName="Réduction" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Voyages">
+            <EntityTypeMapping TypeName="BoVoyageV2Model.Voyage">
+              <MappingFragment StoreEntitySet="Voyages">
+                <ScalarProperty Name="IdVoyage" ColumnName="IdVoyage" />
+                <ScalarProperty Name="DateAller" ColumnName="DateAller" />
+                <ScalarProperty Name="DateRetour" ColumnName="DateRetour" />
+                <ScalarProperty Name="PlacesDisponibles" ColumnName="PlacesDisponibles" />
+                <ScalarProperty Name="TarifToutCompris" ColumnName="TarifToutCompris" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

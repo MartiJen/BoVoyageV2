@@ -32,8 +32,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BoVoyage.Framework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Desktop\ADO.NET\Projet BoVoyage\BoVoyage.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,11 +56,90 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgenceVoyage.cs">
+      <DependentUpon>EF_BoVoyageV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Assurance.cs">
+      <DependentUpon>EF_BoVoyageV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AssuranceAnnulation.cs">
+      <DependentUpon>EF_BoVoyageV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Client.cs">
+      <DependentUpon>EF_BoVoyageV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Destination.cs">
+      <DependentUpon>EF_BoVoyageV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DossiersReservation.cs">
+      <DependentUpon>EF_BoVoyageV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF_BoVoyageV2.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EF_BoVoyageV2.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF_BoVoyageV2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EF_BoVoyageV2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF_BoVoyageV2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EF_BoVoyageV2.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Métier\AgenceVoyage.cs" />
+    <Compile Include="Métier\Assurance.cs" />
+    <Compile Include="Métier\AssuranceAnnulation.cs" />
+    <Compile Include="Métier\Client.cs" />
+    <Compile Include="Métier\Destination.cs" />
+    <Compile Include="Métier\DossierResevation.cs" />
+    <Compile Include="Métier\Participant.cs" />
+    <Compile Include="Métier\Personne.cs" />
+    <Compile Include="Métier\Voyage.cs" />
+    <Compile Include="Participant.cs">
+      <DependentUpon>EF_BoVoyageV2.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Application.cs" />
+    <Compile Include="UI\ConsoleHelper.cs" />
+    <Compile Include="UI\Framework\ElementMenu.cs" />
+    <Compile Include="UI\Framework\Menu.cs" />
+    <Compile Include="UI\ModuleGestionClient.cs" />
+    <Compile Include="UI\ModuleGestionVoyage.cs" />
+    <Compile Include="Voyage.cs">
+      <DependentUpon>EF_BoVoyageV2.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="EF_BoVoyageV2.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EF_BoVoyageV2.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EF_BoVoyageV2.edmx.diagram">
+      <DependentUpon>EF_BoVoyageV2.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EF_BoVoyageV2.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EF_BoVoyageV2.edmx</DependentUpon>
+      <LastGenOutput>EF_BoVoyageV2.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EF_BoVoyageV2.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EF_BoVoyageV2.edmx</DependentUpon>
+      <LastGenOutput>EF_BoVoyageV2.cs</LastGenOutput>
+    </Content>
+    <Content Include="_Lib\BoVoyage.Framework.dll" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
