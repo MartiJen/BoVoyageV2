@@ -105,8 +105,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\Application.cs" />
     <Compile Include="UI\ConsoleHelper.cs" />
+    <Compile Include="UI\ConsoleSaisie.cs" />
     <Compile Include="UI\Framework\ElementMenu.cs" />
+    <Compile Include="UI\Framework\InformationAffichage.cs" />
+    <Compile Include="UI\Framework\InformationAffichageAttribute.cs" />
     <Compile Include="UI\Framework\Menu.cs" />
+    <Compile Include="UI\Framework\OutilsReflection.cs" />
     <Compile Include="UI\ModuleGestionClient.cs" />
     <Compile Include="UI\ModuleGestionVoyage.cs" />
     <Compile Include="Voyage.cs">
@@ -140,6 +144,8 @@
     </Content>
     <Content Include="_Lib\BoVoyage.Framework.dll" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="SQL\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

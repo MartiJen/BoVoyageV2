@@ -60,4 +60,5 @@ namespace BoVoyageV2.UI.Framework
 
             this.elements.Add(element);
         }
+    }
 }
