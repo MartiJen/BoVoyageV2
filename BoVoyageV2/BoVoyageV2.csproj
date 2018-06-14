@@ -68,6 +68,7 @@
     <Compile Include="Client.cs">
       <DependentUpon>EF_BoVoyageV2.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\BaseDonnees.cs" />
     <Compile Include="Destination.cs">
       <DependentUpon>EF_BoVoyageV2.tt</DependentUpon>
     </Compile>

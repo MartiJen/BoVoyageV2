@@ -10,8 +10,8 @@ namespace BoVoyageV2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Salut Gary");
-            Console.ReadKey();
+            var application = new Application();
+            application.Demarrer();
         }
     }
 }
