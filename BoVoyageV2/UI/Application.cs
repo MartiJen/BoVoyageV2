@@ -1,4 +1,5 @@
 ﻿using BoVoyage.Framework.UI;
+using BoVoyageV2.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,15 +17,21 @@ namespace BoVoyageV2.UI
         private void InitialiserModules()
         {
             this.moduleGestionClient = new ModuleGestionClient();
+            this.moduleGestionVoyage = new ModuleGestionVoyage();
         }
 
         private void InitialiserMenuPrincipal()
         {
             this.menuPrincipal = new Menu("Menu principal");
-            this.menuPrincipal.AjouterElement(new ElementMenu("1", "Gestion 1")
+            this.menuPrincipal.AjouterElement(new ElementMenu("1", "Gestion des Clients")
             {
                 AfficherLigneRetourMenuApresExecution = false,
                 FonctionAExecuter = this.moduleGestionClient.Demarrer
+            });
+            this.menuPrincipal.AjouterElement(new ElementMenu("2", "Gestion des Voyages")
+            {
+                AfficherLigneRetourMenuApresExecution = false,
+                FonctionAExecuter = this.moduleGestionVoyage.Demarrer
             });
             this.menuPrincipal.AjouterElement(new ElementMenuQuitterMenu("Q", "Quitter")
             {
@@ -39,5 +46,10 @@ namespace BoVoyageV2.UI
 
             this.menuPrincipal.Afficher();
         }
+
+        /*public static BaseDonnees GetBaseDonnees()
+        {
+            return new BaseDonnees();
+        }*/
     }
 }

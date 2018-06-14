@@ -14,9 +14,9 @@ namespace BoVoyageV2
     
     public partial class DossiersReservation
     {
-        public int IdDossierRéservation { get; set; }
-        public int NuméroUnique { get; set; }
-        public string NuméroCarteBancaire { get; set; }
+        public int IdDossierReservation { get; set; }
+        public int NumeroUnique { get; set; }
+        public string NumeroCarteBancaire { get; set; }
         public decimal PrixTotal { get; set; }
     
         public virtual Assurance Assurance { get; set; }

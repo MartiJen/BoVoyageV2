@@ -25,7 +25,7 @@ namespace BoVoyageV2.UI
             });
             this.menu.AjouterElement(new ElementMenu("3", "Supprimer un client")
             {
-                FonctionAExecuter = this.SuprimerClient
+                FonctionAExecuter = this.SupprimerClient
             });
             this.menu.AjouterElement(new ElementMenuQuitterMenu("R", "Revenir au menu principal..."));
         }
