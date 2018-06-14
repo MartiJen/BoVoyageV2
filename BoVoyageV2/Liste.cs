@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace BoVoyageV2
 {
-    class Liste
+    class ListeVoyage
     {
         // On définit ici les propriétés qu'on veut afficher
         //  et la manière de les afficher
-        private static readonly List<InformationAffichage> strategieAffichageEntitesMetier =
+        public static readonly List<InformationAffichage> strategieAffichageEntitesMetier =
             new List<InformationAffichage>
             {
                 InformationAffichage.Creer<Voyage>(x=>x.IdVoyage, "Id", 3),
@@ -21,17 +21,8 @@ namespace BoVoyageV2
                 InformationAffichage.Creer<Voyage>(x=>x.TarifToutCompris, "Tarif tout compris", 10),
             };
     }
-}
-using BoVoyage.Framework.UI;
-using BoVoyageV2.Métier;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BoVoyageV2
-{
+
     class Liste
     {
         public static readonly List<InformationAffichage> strategieAffichageEntitesMetier =
@@ -49,3 +40,10 @@ namespace BoVoyageV2
            };
     }
 }
+
+
+
+
+
+    
+

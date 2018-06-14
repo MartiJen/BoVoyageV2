@@ -1,5 +1,6 @@
 ﻿using BoVoyage.Framework.UI;
 using BoVoyageV2.DAL;
+using BoVoyageV2.Métier;
 using BoVoyageV2.UI.Framework;
 using System;
 using System.Collections.Generic;
@@ -48,7 +49,7 @@ namespace BoVoyageV2.UI
             ConsoleHelper.AfficherEntete("Voyages");
 
             var liste = new BaseDonnees().Voyages.ToList();
-            ConsoleHelper.AfficherListe(liste, strategieAffichageEntitesMetier);
+            ConsoleHelper.AfficherListe(liste, ListeVoyage.strategieAffichageEntitesMetier);
 
         }
 

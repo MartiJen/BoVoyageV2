@@ -27,12 +27,7 @@ namespace BoVoyageV2.UI
             {
                 AfficherLigneRetourMenuApresExecution = false,
                 FonctionAExecuter = this.moduleGestionClient.Demarrer
-            });
-            this.menuPrincipal.AjouterElement(new ElementMenu("2", "Gestion des voyages")
-            {
-                AfficherLigneRetourMenuApresExecution = false,
-                FonctionAExecuter = this.moduleGestionClient.Demarrer
-            });
+            });           
             this.menuPrincipal.AjouterElement(new ElementMenu("2", "Gestion des Voyages")
             {
                 AfficherLigneRetourMenuApresExecution = false,
