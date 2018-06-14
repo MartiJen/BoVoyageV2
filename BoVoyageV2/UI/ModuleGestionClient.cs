@@ -1,5 +1,6 @@
 ﻿using BoVoyage.Framework.UI;
 using BoVoyageV2.DAL;
+using BoVoyageV2.Métier;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace BoVoyageV2.UI
             });
             this.menu.AjouterElement(new ElementMenu("3", "Supprimer un client")
             {
-                FonctionAExecuter = this.SuprimerClient
+                FonctionAExecuter = this.SupprimerClient
             });
             this.menu.AjouterElement(new ElementMenuQuitterMenu("R", "Revenir au menu principal..."));
         }
@@ -44,38 +45,54 @@ namespace BoVoyageV2.UI
         {
             ConsoleHelper.AfficherEntete("Clients");
 
-            Console.WriteLine("TO DO");
+            var liste = new BaseDonnees().Clients.ToList();
+
+            ConsoleHelper.AfficherListe(liste,Liste.strategieAffichageEntitesMetier);
+
+            
         }
 
         private void AjouterClient()
         {
             ConsoleHelper.AfficherEntete("Nouveau client");
+                        
+            var client = new Client
+            {
+                Civilite = ConsoleSaisie.SaisirChaineObligatoire("Civilité : "),
+                Nom = ConsoleSaisie.SaisirChaineObligatoire("Nom : "),
+                Prenom = ConsoleSaisie.SaisirChaineObligatoire("Prénom : "),
+                Adresse = ConsoleSaisie.SaisirChaineObligatoire("Adresse : "),
+                Telephone = ConsoleSaisie.SaisirChaineObligatoire("Téléphone: "),
+                DateNaissance = ConsoleSaisie.SaisirDateObligatoire("Date de naissance : "),
+                Age = ConsoleSaisie.SaisirEntierObligatoire("Age : "),
+                Email= ConsoleSaisie.SaisirChaineObligatoire("Email : "),
 
-            //var client = new Client
-            //{
-            //    Nom = ConsoleSaisie.SaisirChaine("Nom : ", false),
-            //    Prenom = ConsoleSaisie.SaisirChaine("Prénom : ", false),
-            //    Adresse = ConsoleSaisie.SaisirChaine("Adresse : ", false)
-            //};
+            };
+            using (var bd = new BaseDonnees())
+            {
+                bd.Clients.Add(client);
+                bd.SaveChanges();
+            }
 
-            Console.WriteLine("TO BE CONTINUED");
+            Console.WriteLine("TO BE CONTINUED");          
+                      
         }
 
         private void SupprimerClient()
         {
             ConsoleHelper.AfficherEntete("Supprimer client");
 
-            //var liste = new BaseDonnees().Clients.ToList();
-            //ConsoleHelper.AfficherListe(liste);
-            //var id = ConsoleSaisie.SaisirEntierObligatoire("Id");
+            var liste = new BaseDonnees().Clients.ToList();
+            ConsoleHelper.AfficherListe(liste,Liste.strategieAffichageEntitesMetier);
+            var id = ConsoleSaisie.SaisirEntierObligatoire("Id");
 
-            //using (var sup = new BaseDonnees())
-            //{
-            //    var client = sup.Clients.Single(x => x.Id == id);
-            //    sup.Clients.Remove(client);
-            //    sup.SaveChanges();
+            using (var sup = new BaseDonnees())
+            {
+                var client = sup.Clients.Single(x => x.IdClients == id);
+                sup.Clients.Remove(client);
+                sup.SaveChanges();
 
-            //}
+            }
 
         }
     }

@@ -21,7 +21,12 @@ namespace BoVoyageV2.UI
         private void InitialiserMenuPrincipal()
         {
             this.menuPrincipal = new Menu("Menu principal");
-            this.menuPrincipal.AjouterElement(new ElementMenu("1", "Gestion 1")
+            this.menuPrincipal.AjouterElement(new ElementMenu("1", "Gestion des clients")
+            {
+                AfficherLigneRetourMenuApresExecution = false,
+                FonctionAExecuter = this.moduleGestionClient.Demarrer
+            });
+            this.menuPrincipal.AjouterElement(new ElementMenu("2", "Gestion des voyages")
             {
                 AfficherLigneRetourMenuApresExecution = false,
                 FonctionAExecuter = this.moduleGestionClient.Demarrer
