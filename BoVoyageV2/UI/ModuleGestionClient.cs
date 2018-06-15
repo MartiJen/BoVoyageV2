@@ -76,7 +76,7 @@ namespace BoVoyageV2.UI
                 ConsoleHelper.AfficherListe(liste, ListeClient.strategieAffichageEntitesMetier);
                 var client = new Client();
 
-
+                //Pour que la saisie soit uniquement "M" ou "Mme" mais message "retour memu" après cette étape
                 /*while(false)
                     {
                     client.Civilite = ConsoleSaisie.SaisirChaineObligatoire("Civilité : ");
@@ -87,8 +87,7 @@ namespace BoVoyageV2.UI
                         ConsoleHelper.AfficherMessageErreur("Saisie invalide");
                         return;
                     } }*/
-
-
+                    
                 client.Civilite = ConsoleSaisie.SaisirChaineObligatoire("Civilité : ");
                 client.Nom = ConsoleSaisie.SaisirChaineObligatoire("Nom : ");
                 client.Prenom = ConsoleSaisie.SaisirChaineObligatoire("Prénom : ");
@@ -96,16 +95,11 @@ namespace BoVoyageV2.UI
                 client.Telephone = ConsoleSaisie.SaisirChaineObligatoire("Téléphone: ");
                 client.DateNaissance = ConsoleSaisie.SaisirDateObligatoire("Date de naissance : ");                
                 client.Email = ConsoleSaisie.SaisirChaineObligatoire("Email : ");
-
-
-
-
-            bd.Clients.Add(client);
-            bd.SaveChanges();
+                
+                bd.Clients.Add(client);
+                bd.SaveChanges();
             }
-        }
-        
-
+        }       
 
         private void SupprimerClient()
         {
@@ -113,14 +107,13 @@ namespace BoVoyageV2.UI
 
             var liste = new BaseDonnees().Clients.ToList();
             ConsoleHelper.AfficherListe(liste, ListeClient.strategieAffichageEntitesMetier);
-            var id = ConsoleSaisie.SaisirEntierObligatoire("Id");
+            var id = ConsoleSaisie.SaisirEntierObligatoire("Id du client à supprimer");
 
             using (var sup = new BaseDonnees())
             {
                 var client = sup.Clients.Single(x => x.IdClients == id);
                 sup.Clients.Remove(client);
                 sup.SaveChanges();
-
             }
         }
 
@@ -133,5 +126,4 @@ namespace BoVoyageV2.UI
             ConsoleHelper.AfficherListe(liste, ListeParticipant.strategieAffichageEntitesMetier);            
         }
     }
-
 }

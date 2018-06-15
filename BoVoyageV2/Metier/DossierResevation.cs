@@ -15,6 +15,9 @@ namespace BoVoyageV2.Métier
         public int IdNumeroUnique { get; set; }        
         public string NumeroCarteBancaire { get; set; }
         public decimal PrixTotal { get; set; }
+        
+        public int NombreParticipant { get; set; }
+        public bool Assurance { get; set; }
 
         [ForeignKey("IdClient")]
         public virtual Client Client { get; set; }
@@ -22,24 +25,20 @@ namespace BoVoyageV2.Métier
 
         [ForeignKey("IdVoyage")]
         public virtual Voyage Voyage { get; set; }
-        public int IdVoyage { get; set; }
-
+        public int IdVoyage { get; set; }        
     }
 
     public enum EtatDossierReservation : byte
     {
         enAttente = 0,
-        encours = 1,
+        enCours = 1,
         refusee = 2,
-        Acceptee = 3
+        acceptee = 3
     }
 
     public enum RaisonAnnulatoionDossier : byte
     {
         client = 0,
         placesInsuffisantes = 2
-    }
-
-    
-    
+    }       
 }

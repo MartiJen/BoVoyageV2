@@ -26,7 +26,7 @@ namespace BoVoyageV2.UI
         private void InitialiserMenu()
         {
             this.menu = new Menu("Gestion des voyages");
-            this.menu.AjouterElement(new ElementMenu("1", "Afficher les voyages")
+            this.menu.AjouterElement(new ElementMenu("1", "Lister les voyages")
             {
                 FonctionAExecuter = this.AfficherVoyages
             });
@@ -107,28 +107,14 @@ namespace BoVoyageV2.UI
 
             var liste = new BaseDonnees().Voyages.ToList();
             ConsoleHelper.AfficherListe(liste, ListeVoyage.strategieAffichageEntitesMetier);
-            var id = ConsoleSaisie.SaisirEntierObligatoire("Id");
+            var id = ConsoleSaisie.SaisirEntierObligatoire("Id du voyage à supprimer");
 
             using (var sup = new BaseDonnees())
             {
                 var voyage = sup.Voyages.Single(x => x.IdVoyage == id);
                 sup.Voyages.Remove(voyage);
                 sup.SaveChanges();
-
             }
-
-        }
-
-            private static SqlConnection GetConnexion()
-            {
-                var connectionString = ConfigurationManager.ConnectionStrings["Connexion"].ConnectionString;
-                return new SqlConnection(connectionString);
-            }
-
-
+        }                     
     }
-
-
-
-
 } 

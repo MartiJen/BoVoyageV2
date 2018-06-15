@@ -21,9 +21,6 @@ namespace BoVoyageV2.Métier
         public override string ToString()
         {
             return Pays;
-        }
-        
-      
-
+        }             
     }
 }

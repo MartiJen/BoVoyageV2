@@ -51,11 +51,6 @@ namespace BoVoyageV2.UI
             this.InitialiserMenuPrincipal();
 
             this.menuPrincipal.Afficher();
-        }
-
-        /*public static BaseDonnees GetBaseDonnees()
-        {
-            return new BaseDonnees();
-        }*/
+        }        
     }
 }

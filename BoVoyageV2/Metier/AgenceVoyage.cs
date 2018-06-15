@@ -19,6 +19,5 @@ namespace BoVoyageV2.Métier
         {
             return Nom;
         }
-
     }
 }

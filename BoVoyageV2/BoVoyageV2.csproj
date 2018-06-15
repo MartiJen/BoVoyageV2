@@ -64,7 +64,6 @@
     <Compile Include="Metier\Client.cs" />
     <Compile Include="Metier\Destination.cs" />
     <Compile Include="Metier\DossierResevation.cs" />
-    <Compile Include="UI\Framework\EntiteMetier.cs" />
     <Compile Include="Metier\Participant.cs" />
     <Compile Include="Metier\Personne.cs" />
     <Compile Include="Metier\Voyage.cs" />
@@ -78,7 +77,9 @@
     <Compile Include="UI\ModuleGestionVoyage.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

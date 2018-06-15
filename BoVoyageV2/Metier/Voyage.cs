@@ -24,7 +24,6 @@ namespace BoVoyageV2.Métier
 
         [ForeignKey("IdDestination")]
         public virtual Destination Destination { get; set; }                 
-        public int IdDestination { get; set; }
-        
+        public int IdDestination { get; set; }        
     }
 }

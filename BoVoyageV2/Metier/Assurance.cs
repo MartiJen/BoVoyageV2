@@ -12,9 +12,6 @@ namespace BoVoyageV2.Métier
     public class Assurance
     {
         [Key]
-        public int IdAssurance { get; set; }
-
-        
-               
+        public int IdAssurance { get; set; }                     
     }
 }

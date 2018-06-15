@@ -23,8 +23,5 @@ namespace BoVoyageV2.DAL
         public DbSet<AgenceVoyage> AgenceVoyages { get; set; }
         public DbSet<Assurance> Assurances { get; set; }
         public DbSet<AssuranceAnnulation> AssuranceAnnulations { get; set; }
-
-
     }
-
 }

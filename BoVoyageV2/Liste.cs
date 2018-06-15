@@ -8,9 +8,6 @@ using System.Threading.Tasks;
 
 namespace BoVoyageV2
 {
-    
-
-
     class ListeClient
     {
         public static readonly List<InformationAffichage> strategieAffichageEntitesMetier =
@@ -40,14 +37,13 @@ namespace BoVoyageV2
                 InformationAffichage.Creer<Participant>(x=>x.Adresse, "Adresse", 20),
                 InformationAffichage.Creer<Participant>(x=>x.Telephone, "Téléphone", 12),
                 InformationAffichage.Creer<Participant>(x=>x.DateNaissance, "Date de naissance", 20),
-                InformationAffichage.Creer<Participant>(x=>x.Age, "Age", 20),                
+                InformationAffichage.Creer<Participant>(x=>x.Age, "Age", 20),
            };
     }
 
-
     class ListeVoyage
     {
-        
+
         public static readonly List<InformationAffichage> strategieAffichageEntitesMetier =
             new List<InformationAffichage>
             {
@@ -57,13 +53,11 @@ namespace BoVoyageV2
                 InformationAffichage.Creer<Voyage>(x=>x.DateAller, "Date d'aller", 15),
                 InformationAffichage.Creer<Voyage>(x=>x.DateRetour, "Date de retour", 15),
                 InformationAffichage.Creer<Voyage>(x=>x.TarifToutCompris, "Tarif tout compris", 20),
-                InformationAffichage.Creer<Voyage>(x=>x.PlacesDisponibles, "Places disponibles", 20),               
+                InformationAffichage.Creer<Voyage>(x=>x.PlacesDisponibles, "Places disponibles", 20),
                 InformationAffichage.Creer<Voyage>(x=>x.AgenceVoyage.Nom, "Agence", 20),
-
-
-
             };
     }
+
     class ListeDossierReservation
     {
         public static readonly List<InformationAffichage> strategieAffichageEntitesMetier =
@@ -72,12 +66,14 @@ namespace BoVoyageV2
                 InformationAffichage.Creer<DossiersReservation>(x=>x.IdNumeroUnique, "N° Dossier ", 15),
                 InformationAffichage.Creer<DossiersReservation>(x=>x.IdClient, "N° Client", 15),
                 InformationAffichage.Creer<DossiersReservation>(x=>x.NumeroCarteBancaire, "N° Carte Bancaire", 20),
-                InformationAffichage.Creer<Destination>(x=>x.Pays, "Pays", 20),   
+                InformationAffichage.Creer<DossiersReservation>(x=>x.Voyage.Destination.Pays, "Pays", 20),
                 InformationAffichage.Creer<DossiersReservation>(x=>x.Voyage.DateAller, "Date de départ", 15),
-                InformationAffichage.Creer<DossiersReservation>(x=>x.PrixTotal, "PrixTotal", 10),                
-                InformationAffichage.Creer<AgenceVoyage>(x=>x.Nom, "Agence", 20),                                
+                InformationAffichage.Creer<DossiersReservation>(x=>x.PrixTotal, "PrixTotal", 10),
+                InformationAffichage.Creer<DossiersReservation>(x=>x.Voyage.AgenceVoyage.Nom, "Agence", 20),
+                InformationAffichage.Creer<DossiersReservation>(x=>x.NombreParticipant, "Nbre de Participants", 20),
+                InformationAffichage.Creer<DossiersReservation>(x=>x.Assurance, "Assurance", 10),
            };
-}
+    }
 }
 
 

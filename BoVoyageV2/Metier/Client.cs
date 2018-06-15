@@ -13,7 +13,6 @@ namespace BoVoyageV2.Métier
     {
         [Key]
         public int IdClients { get; set; }
-        public string Email { get; set; }
-                      
+        public string Email { get; set; }                      
     }
 }

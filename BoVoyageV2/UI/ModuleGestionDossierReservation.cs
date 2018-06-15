@@ -32,9 +32,7 @@ namespace BoVoyageV2.UI
                 FonctionAExecuter = this.SupprimerDossier
             });
             this.menu.AjouterElement(new ElementMenuQuitterMenu("R", "Revenir au menu principal..."));
-
         }
-
 
         public void Demarrer()
         {
@@ -51,28 +49,23 @@ namespace BoVoyageV2.UI
             ConsoleHelper.AfficherEntete("Dossier de reservation");
 
             var liste = new BaseDonnees().DossiersReservation.ToList();
-            ConsoleHelper.AfficherListe(liste, ListeDossierReservation.strategieAffichageEntitesMetier);
-
-
+            ConsoleHelper.AfficherListe(liste, ListeDossierReservation.strategieAffichageEntitesMetier);            
         }
 
         private void SupprimerDossier()
         {
             ConsoleHelper.AfficherEntete("Supprimer dossier de reservation");
 
-            var liste = new BaseDonnees().Voyages.ToList();
+            var liste = new BaseDonnees().DossiersReservation.ToList();
             ConsoleHelper.AfficherListe(liste, ListeDossierReservation.strategieAffichageEntitesMetier);
-            var id = ConsoleSaisie.SaisirEntierObligatoire("Id");
+            var id = ConsoleSaisie.SaisirEntierObligatoire("N° de dossier à supprimer");
 
             using (var sup = new BaseDonnees())
             {
                 var dossierReservation = sup.DossiersReservation.Single(x => x.IdNumeroUnique == id);
                 sup.DossiersReservation.Remove(dossierReservation);
                 sup.SaveChanges();
-
             }
-        }
-
-
+        }      
     }
 }
