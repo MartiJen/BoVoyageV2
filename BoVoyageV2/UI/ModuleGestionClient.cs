@@ -47,43 +47,61 @@ namespace BoVoyageV2.UI
 
             var liste = new BaseDonnees().Clients.ToList();
 
-            ConsoleHelper.AfficherListe(liste,Liste.strategieAffichageEntitesMetier);
+            ConsoleHelper.AfficherListe(liste, ListeClient.strategieAffichageEntitesMetier);
 
-            
+
         }
 
         private void AjouterClient()
         {
             ConsoleHelper.AfficherEntete("Nouveau client");
-                        
-            var client = new Client
-            {
-                Civilite = ConsoleSaisie.SaisirChaineObligatoire("Civilité : "),
-                Nom = ConsoleSaisie.SaisirChaineObligatoire("Nom : "),
-                Prenom = ConsoleSaisie.SaisirChaineObligatoire("Prénom : "),
-                Adresse = ConsoleSaisie.SaisirChaineObligatoire("Adresse : "),
-                Telephone = ConsoleSaisie.SaisirChaineObligatoire("Téléphone: "),
-                DateNaissance = ConsoleSaisie.SaisirDateObligatoire("Date de naissance : "),
-                Age = ConsoleSaisie.SaisirEntierObligatoire("Age : "),
-                Email= ConsoleSaisie.SaisirChaineObligatoire("Email : "),
 
-            };
             using (var bd = new BaseDonnees())
             {
-                bd.Clients.Add(client);
-                bd.SaveChanges();
-            }
+                var liste = new BaseDonnees().Clients.ToList();
+                ConsoleHelper.AfficherListe(liste, ListeClient.strategieAffichageEntitesMetier);
+                var client = new Client();
 
-            Console.WriteLine("TO BE CONTINUED");          
-                      
+
+                /*while(false)
+                    {
+                    client.Civilite = ConsoleSaisie.SaisirChaineObligatoire("Civilité : ");
+                    if (client.Civilite == "M" || client.Civilite == "Mme")
+                    { }
+                    else
+                    {
+                        ConsoleHelper.AfficherMessageErreur("Saisie invalide");
+                        return;
+                    } }*/
+
+
+                client.Civilite = ConsoleSaisie.SaisirChaineObligatoire("Civilité : ");
+                client.Nom = ConsoleSaisie.SaisirChaineObligatoire("Nom : ");
+                client.Prenom = ConsoleSaisie.SaisirChaineObligatoire("Prénom : ");
+                client.Adresse = ConsoleSaisie.SaisirChaineObligatoire("Adresse : ");
+                client.Telephone = ConsoleSaisie.SaisirChaineObligatoire("Téléphone: ");
+                client.DateNaissance = ConsoleSaisie.SaisirDateObligatoire("Date de naissance : ");                
+                client.Email = ConsoleSaisie.SaisirChaineObligatoire("Email : ");
+
+
+
+
+            bd.Clients.Add(client);
+            bd.SaveChanges();
+            }
         }
+
+
+
+
+
 
         private void SupprimerClient()
         {
             ConsoleHelper.AfficherEntete("Supprimer client");
 
             var liste = new BaseDonnees().Clients.ToList();
-            ConsoleHelper.AfficherListe(liste,Liste.strategieAffichageEntitesMetier);
+            ConsoleHelper.AfficherListe(liste, ListeClient.strategieAffichageEntitesMetier);
             var id = ConsoleSaisie.SaisirEntierObligatoire("Id");
 
             using (var sup = new BaseDonnees())
@@ -93,7 +111,7 @@ namespace BoVoyageV2.UI
                 sup.SaveChanges();
 
             }
-
         }
     }
+
 }

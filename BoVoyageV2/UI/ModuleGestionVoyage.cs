@@ -60,8 +60,8 @@ namespace BoVoyageV2.UI
             using (BaseDonnees context = new BaseDonnees())
             {
 
-                //var liste = new BaseDonnees().Voyages.ToList();
-                //ConsoleHelper.AfficherListe(liste, ListeVoyage.strategieAffichageEntitesMetier);
+                var liste = new BaseDonnees().Voyages.ToList();
+                ConsoleHelper.AfficherListe(liste, ListeVoyage.strategieAffichageEntitesMetier);
                 var voyage = new Voyage();
 
 

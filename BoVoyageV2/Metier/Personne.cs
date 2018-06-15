@@ -16,6 +16,10 @@ namespace BoVoyageV2.Métier
         public string Adresse { get; set; }
         public string Telephone { get; set; }
         public System.DateTime DateNaissance { get; set; }
-        public int Age { get; set; }
+        public int Age
+            { get
+                { return (DateTime.Today - DateNaissance).Days / 365;
+                }
+            }
     }
 }

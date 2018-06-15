@@ -20,13 +20,14 @@ namespace BoVoyageV2
                 InformationAffichage.Creer<Voyage>(x=>x.DateRetour, "Date de retour", 20),
                 InformationAffichage.Creer<Voyage>(x=>x.TarifToutCompris, "Tarif tout compris", 20),
                 InformationAffichage.Creer<Voyage>(x=>x.PlacesDisponibles, "Places disponibles", 20),
-                //InformationAffichage.Creer<Destination>(x=>x.Pays, "Pays", 10),
+                InformationAffichage.Creer<Voyage>(x=>x.Destination, "Pays", 20),
+                
 
             };
     }
 
 
-    class Liste
+    class ListeClient
     {
         public static readonly List<InformationAffichage> strategieAffichageEntitesMetier =
            new List<InformationAffichage>
@@ -38,7 +39,7 @@ namespace BoVoyageV2
                 InformationAffichage.Creer<Client>(x=>x.Adresse, "Adresse", 20),
                 InformationAffichage.Creer<Client>(x=>x.Telephone, "Téléphone", 12),
                 InformationAffichage.Creer<Client>(x=>x.DateNaissance, "Date de naissance", 20),
-                InformationAffichage.Creer<Client>(x=>x.Age, "Age", 5),
+                InformationAffichage.Creer<Client>(x=>x.Age, "Age", 20),
                 InformationAffichage.Creer<Client>(x=>x.Email, "Email", 20),
            };
     }
