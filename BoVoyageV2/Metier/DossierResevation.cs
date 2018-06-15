@@ -12,8 +12,7 @@ namespace BoVoyageV2.Métier
     public class DossiersReservation
     {   
         [Key]
-        public int IdDossierReservation { get; set; }
-        public int NumeroUnique { get; set; }
+        public int IdNumeroUnique { get; set; }        
         public string NumeroCarteBancaire { get; set; }
         public decimal PrixTotal { get; set; }
                

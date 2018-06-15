@@ -8,11 +8,17 @@ using System.Threading.Tasks;
 
 namespace BoVoyageV2.Métier
 {
+    [Table("AgenceVoyage")]
     public class AgenceVoyage
     {
         [Key]
         public int IdAgenceVoyage { get; set; }
         public string Nom { get; set; }
-              
+
+        public override string ToString()
+        {
+            return Nom;
+        }
+
     }
 }

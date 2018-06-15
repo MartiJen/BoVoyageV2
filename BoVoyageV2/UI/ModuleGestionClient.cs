@@ -23,7 +23,7 @@ namespace BoVoyageV2.UI
         private void InitialiserMenu()
         {
             this.menu = new Menu("Gestion des clients");
-            this.menu.AjouterElement(new ElementMenu("1", "Afficher les clients")
+            this.menu.AjouterElement(new ElementMenu("1", "Liste des clients")
             {
                 FonctionAExecuter = this.AfficherClients
             });
@@ -35,7 +35,11 @@ namespace BoVoyageV2.UI
             {
                 FonctionAExecuter = this.SupprimerClient
             });
-            this.menu.AjouterElement(new ElementMenu("4", "Gestion des dossier de reservation")
+            this.menu.AjouterElement(new ElementMenu("4", "Liste des participants")
+            {
+                FonctionAExecuter = this.AfficherParticipants
+            });
+            this.menu.AjouterElement(new ElementMenu("5", "Gestion des dossier de reservation")
             {
                 AfficherLigneRetourMenuApresExecution = false,
                 FonctionAExecuter = this.Application.ModuleGestionDossierReservation.Demarrer
@@ -59,9 +63,7 @@ namespace BoVoyageV2.UI
 
             var liste = new BaseDonnees().Clients.ToList();
 
-            ConsoleHelper.AfficherListe(liste, ListeClient.strategieAffichageEntitesMetier);
-
-
+            ConsoleHelper.AfficherListe(liste, ListeClient.strategieAffichageEntitesMetier);            
         }
 
         private void AjouterClient()
@@ -102,12 +104,7 @@ namespace BoVoyageV2.UI
             bd.SaveChanges();
             }
         }
-
-
-
-
-
-
+        
         private void SupprimerClient()
         {
             ConsoleHelper.AfficherEntete("Supprimer client");
@@ -123,6 +120,15 @@ namespace BoVoyageV2.UI
                 sup.SaveChanges();
 
             }
+        }
+
+        private void AfficherParticipants()
+        {
+            ConsoleHelper.AfficherEntete("Participants");
+
+            var liste = new BaseDonnees().Participants.ToList();
+
+            ConsoleHelper.AfficherListe(liste, ListeParticipant.strategieAffichageEntitesMetier);            
         }
     }
 
