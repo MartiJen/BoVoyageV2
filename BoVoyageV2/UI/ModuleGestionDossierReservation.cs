@@ -51,7 +51,7 @@ namespace BoVoyageV2.UI
             ConsoleHelper.AfficherEntete("Dossier de reservation");
 
             var liste = new BaseDonnees().DossiersReservations.ToList();
-            ConsoleHelper.AfficherListe(liste, ListeVoyage.strategieAffichageEntitesMetier);
+            ConsoleHelper.AfficherListe(liste, ListeDossierReservation.strategieAffichageEntitesMetier);
 
 
         }
@@ -61,7 +61,7 @@ namespace BoVoyageV2.UI
             ConsoleHelper.AfficherEntete("Supprimer dossier de reservation");
 
             var liste = new BaseDonnees().Voyages.ToList();
-            ConsoleHelper.AfficherListe(liste, Liste.strategieAffichageEntitesMetier);
+            ConsoleHelper.AfficherListe(liste, ListeDossierReservation.strategieAffichageEntitesMetier);
             var id = ConsoleSaisie.SaisirEntierObligatoire("Id");
 
             using (var sup = new BaseDonnees())

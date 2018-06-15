@@ -43,6 +43,21 @@ namespace BoVoyageV2
                 InformationAffichage.Creer<Client>(x=>x.Email, "Email", 20),
            };
     }
+
+    class ListeDossierReservation
+    {
+        public static readonly List<InformationAffichage> strategieAffichageEntitesMetier =
+           new List<InformationAffichage>
+           {
+                InformationAffichage.Creer<DossiersReservation>(x=>x.IdDossierReservation, "Id Dossier de reservation", 3),
+                InformationAffichage.Creer<DossiersReservation>(x=>x.NumeroUnique, "Numero unique", 8),
+                InformationAffichage.Creer<DossiersReservation>(x=>x.NumeroCarteBancaire, "Numero Carte Bancaire", 20),
+                InformationAffichage.Creer<DossiersReservation>(x=>x.PrixTotal, "PrixTotal", 10),
+                InformationAffichage.Creer<DossiersReservation>(x=>x.IdClient, "IdClient", 3),
+                InformationAffichage.Creer<DossiersReservation>(x=>x.IdVoyage, "IdVoyage", 12),
+
+           };
+}
 }
 
 
