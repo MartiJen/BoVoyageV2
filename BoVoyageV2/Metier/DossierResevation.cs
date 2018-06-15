@@ -10,7 +10,7 @@ namespace BoVoyageV2.Métier
 {
     [Table("DossiersReservation")]
     public class DossiersReservation
-    {
+    {   
         [Key]
         public int IdDossierReservation { get; set; }
         public int NumeroUnique { get; set; }

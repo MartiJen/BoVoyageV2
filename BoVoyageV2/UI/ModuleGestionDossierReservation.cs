@@ -66,8 +66,8 @@ namespace BoVoyageV2.UI
 
             using (var sup = new BaseDonnees())
             {
-                var voyage = sup.Voyages.Single(x => x.IdVoyage == id);
-                sup.Voyages.Remove(voyage);
+                var dossierReservation = sup.DossiersReservation.Single(x => x.IdDossierReservation == id);
+                sup.DossiersReservation.Remove(dossierReservation);
                 sup.SaveChanges();
 
             }

@@ -92,6 +92,9 @@ namespace BoVoyageV2.UI
                 }
 
                 voyage.PlacesDisponibles = ConsoleSaisie.SaisirEntierObligatoire("Places disponibles : ");
+                voyage.TarifToutCompris = ConsoleSaisie.SaisirEntierObligatoire("Tarif tout compris : ");
+                voyage.IdAgenceVoyage = ConsoleSaisie.SaisirEntierObligatoire("Id Agence de voyage : ");
+                voyage.IdDestination = ConsoleSaisie.SaisirEntierObligatoire("Id Destination : ");
 
                 context.Voyages.Add(voyage);
                 context.SaveChanges();
