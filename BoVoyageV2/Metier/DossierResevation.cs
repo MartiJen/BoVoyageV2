@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BoVoyageV2.Métier
 {
-    [Table("DossiersReservation")]
+    [Table ("DossiersResevation")]
     public class DossiersReservation
     {   
         [Key]
