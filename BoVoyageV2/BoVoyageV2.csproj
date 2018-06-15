@@ -85,10 +85,9 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="SQL\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="Basse de donnée SQL\Base de données BoVoyageV2.sql" />
     <Content Include="_Lib\BoVoyage.Framework.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -93,7 +93,12 @@ namespace BoVoyageV2.UI
                 client.Prenom = ConsoleSaisie.SaisirChaineObligatoire("Prénom : ");
                 client.Adresse = ConsoleSaisie.SaisirChaineObligatoire("Adresse : ");
                 client.Telephone = ConsoleSaisie.SaisirChaineObligatoire("Téléphone: ");
-                client.DateNaissance = ConsoleSaisie.SaisirDateObligatoire("Date de naissance : ");                
+                client.DateNaissance = ConsoleSaisie.SaisirDateObligatoire("Date de naissance : ");
+                if (client.DateNaissance > DateTime.Today)
+                {
+                    ConsoleHelper.AfficherMessageErreur("Date invalide");
+                    return;
+                }
                 client.Email = ConsoleSaisie.SaisirChaineObligatoire("Email : ");
                 
                 bd.Clients.Add(client);
