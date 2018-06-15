@@ -74,6 +74,7 @@
     <Compile Include="UI\Framework\InformationAffichageAttribute.cs" />
     <Compile Include="UI\Framework\OutilsReflection.cs" />
     <Compile Include="UI\ModuleGestionClient.cs" />
+    <Compile Include="UI\ModuleGestionDossierReservation.cs" />
     <Compile Include="UI\ModuleGestionVoyage.cs" />
   </ItemGroup>
   <ItemGroup>
