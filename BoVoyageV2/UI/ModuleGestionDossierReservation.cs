@@ -50,7 +50,7 @@ namespace BoVoyageV2.UI
         {
             ConsoleHelper.AfficherEntete("Dossier de reservation");
 
-            var liste = new BaseDonnees().DossiersReservations.ToList();
+            var liste = new BaseDonnees().DossiersReservation.ToList();
             ConsoleHelper.AfficherListe(liste, ListeDossierReservation.strategieAffichageEntitesMetier);
 
 
