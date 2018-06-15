@@ -57,47 +57,64 @@ namespace BoVoyageV2.UI
         {
             ConsoleHelper.AfficherEntete("Nouveau Voyage");
 
-            BaseDonnees context = new BaseDonnees();
-            var voyage = new Voyage
+            using (BaseDonnees context = new BaseDonnees())
             {
-                DateAller = ConsoleSaisie.SaisirDateObligatoire("Date d'aller : "),
-                DateRetour = ConsoleSaisie.SaisirDateObligatoire("Date de retour : "),
-                PlacesDisponibles = ConsoleSaisie.SaisirEntierObligatoire("Places disponibles : "),
-                TarifToutCompris = ConsoleSaisie.SaisirDecimalObligatoire("Tarif tout compris : ")
-            };
-            context.Voyages.Add(voyage);
-            context.SaveChanges();
 
+                //var liste = new BaseDonnees().Voyages.ToList();
+                //ConsoleHelper.AfficherListe(liste, ListeVoyage.strategieAffichageEntitesMetier);
+                var voyage = new Voyage();
+
+
+                voyage.DateAller = ConsoleSaisie.SaisirDateObligatoire("Date d'aller : ");
+                if (voyage.DateAller < DateTime.Today)
+                {
+                    ConsoleHelper.AfficherMessageErreur("Date invalide");
+                    return;
+                }
+
+                voyage.DateRetour = ConsoleSaisie.SaisirDateObligatoire("Date de retour : ");
+                if (voyage.DateRetour <= voyage.DateAller)
+                {
+                    ConsoleHelper.AfficherMessageErreur("Date invalide");
+                    return;
+                }
+
+                voyage.PlacesDisponibles = ConsoleSaisie.SaisirEntierObligatoire("Places disponibles : ");
+                voyage.TarifToutCompris = ConsoleSaisie.SaisirDecimalObligatoire("Tarif tout compris : ");
+
+                context.Voyages.Add(voyage);
+                context.SaveChanges();
+            }
         }
 
         private void SupprimerVoyages()
         {
             ConsoleHelper.AfficherEntete("Supprimer voyages");
 
-            //var liste = new BaseDonnees().Clients.ToList();
-            //ConsoleHelper.AfficherListe(liste);
-            //var id = ConsoleSaisie.SaisirEntierObligatoire("Id");
+            var liste = new BaseDonnees().Voyages.ToList();
+            ConsoleHelper.AfficherListe(liste, ListeVoyage.strategieAffichageEntitesMetier);
+            var id = ConsoleSaisie.SaisirEntierObligatoire("Id");
 
-            //using (var sup = new BaseDonnees())
-            //{
-            //    var client = sup.Clients.Single(x => x.Id == id);
-            //    sup.Clients.Remove(client);
-            //    sup.SaveChanges();
+            using (var sup = new BaseDonnees())
+            {
+                var voyage = sup.Voyages.Single(x => x.IdVoyage == id);
+                sup.Voyages.Remove(voyage);
+                sup.SaveChanges();
 
-            //}
+            }
 
         }
 
-        private static SqlConnection GetConnexion()
-        {
-            var connectionString = ConfigurationManager.ConnectionStrings["Connexion"].ConnectionString;
-            return new SqlConnection(connectionString);
-        }
+            private static SqlConnection GetConnexion()
+            {
+                var connectionString = ConfigurationManager.ConnectionStrings["Connexion"].ConnectionString;
+                return new SqlConnection(connectionString);
+            }
 
 
     }
 
-        
- 
 
-}
+
+
+} 

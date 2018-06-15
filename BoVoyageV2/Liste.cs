@@ -18,7 +18,10 @@ namespace BoVoyageV2
                 InformationAffichage.Creer<Voyage>(x=>x.IdVoyage, "Id", 3),
                 InformationAffichage.Creer<Voyage>(x=>x.DateAller, "Date d'aller", 20),
                 InformationAffichage.Creer<Voyage>(x=>x.DateRetour, "Date de retour", 20),
-                InformationAffichage.Creer<Voyage>(x=>x.TarifToutCompris, "Tarif tout compris", 10),
+                InformationAffichage.Creer<Voyage>(x=>x.TarifToutCompris, "Tarif tout compris", 20),
+                InformationAffichage.Creer<Voyage>(x=>x.PlacesDisponibles, "Places disponibles", 20),
+                //InformationAffichage.Creer<Destination>(x=>x.Pays, "Pays", 10),
+
             };
     }
 
