@@ -104,10 +104,6 @@ namespace BoVoyageV2.UI
         }
 
 
-
-
-
-
         private void SupprimerClient()
         {
             ConsoleHelper.AfficherEntete("Supprimer client");
