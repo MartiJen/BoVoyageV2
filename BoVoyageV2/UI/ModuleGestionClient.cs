@@ -9,9 +9,16 @@ using System.Threading.Tasks;
 
 namespace BoVoyageV2.UI
 {
-    class ModuleGestionClient
+    public class ModuleGestionClient
     {
         private Menu menu;
+
+        public ModuleGestionClient (Application application)
+        {
+            Application = application;
+        }
+
+        public Application Application { get; }
 
         private void InitialiserMenu()
         {
@@ -27,6 +34,11 @@ namespace BoVoyageV2.UI
             this.menu.AjouterElement(new ElementMenu("3", "Supprimer un client")
             {
                 FonctionAExecuter = this.SupprimerClient
+            });
+            this.menu.AjouterElement(new ElementMenu("4", "Gestion des dossier de reservation")
+            {
+                AfficherLigneRetourMenuApresExecution = false,
+                FonctionAExecuter = this.Application.ModuleGestionDossierReservation.Demarrer
             });
             this.menu.AjouterElement(new ElementMenuQuitterMenu("R", "Revenir au menu principal..."));
         }
