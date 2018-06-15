@@ -16,6 +16,13 @@ namespace BoVoyageV2.UI
     {
         private Menu menu;
 
+        public ModuleGestionVoyage (Application application)
+        {
+            Application = application;
+        }
+
+        public Application Application { get; }
+
         private void InitialiserMenu()
         {
             this.menu = new Menu("Gestion des voyages");
@@ -30,6 +37,11 @@ namespace BoVoyageV2.UI
             this.menu.AjouterElement(new ElementMenu("3", "Supprimer un voyage")
             {
                 FonctionAExecuter = this.SupprimerVoyages
+            });
+            this.menu.AjouterElement(new ElementMenu("4", "Gestion des dossier de reservation")
+            {
+                AfficherLigneRetourMenuApresExecution = false,
+                FonctionAExecuter = this.Application.ModuleGestionDossierReservation.Demarrer
             });
             this.menu.AjouterElement(new ElementMenuQuitterMenu("R", "Revenir au menu principal..."));
         }
@@ -80,7 +92,6 @@ namespace BoVoyageV2.UI
                 }
 
                 voyage.PlacesDisponibles = ConsoleSaisie.SaisirEntierObligatoire("Places disponibles : ");
-                voyage.TarifToutCompris = ConsoleSaisie.SaisirDecimalObligatoire("Tarif tout compris : ");
 
                 context.Voyages.Add(voyage);
                 context.SaveChanges();
