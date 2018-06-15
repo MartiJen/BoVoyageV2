@@ -12,8 +12,7 @@ namespace BoVoyageV2.Métier
     public class Participant : Personne
     {
         [Key]
-        public int IdParticipant { get; set; }
-        public int NumeroUnique { get; set; }
+        public int IdNumeroUnique { get; set; }        
         public double Reduction { get; set; }
 
         [ForeignKey("IdDossierReservation")]
